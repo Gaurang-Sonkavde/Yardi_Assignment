@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sentiment Analysis</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Sentiment Analysis</h1>
+        <form method="POST" action="/predict-lstm">
+            <textarea name="text" placeholder="Enter your text"></textarea>
+            <button type="submit" name="lstm_btn" class="lstm-button">Predict using LSTM</button>
+        </form>
+        <form method="POST" action="/predict-nn">
+            <textarea name="text" placeholder="Enter your text"></textarea>
+            <button type="submit" name="nn_btn" class="nn-button">Predict using Simple NN</button>
+        </form>
+        {% if lstm_prediction and nn_prediction %}
+            <div class="results">
+                <p>LSTM Prediction: {{ lstm_prediction }}</p>
+                <p>Simple NN Prediction: {{ nn_prediction }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
